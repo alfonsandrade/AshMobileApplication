@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="2500"
+        motion:autoTransition="animateToEnd">
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/ashbluebackground"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            motion:layout_constraintBottom_toBottomOf="@id/ashgrayonlyicon"
+            motion:layout_constraintTop_toTopOf="@id/ashgrayonlyicon"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:scaleX="10"
+            android:scaleY="10" />
+        <Constraint
+            android:id="@+id/ashgrayonlyicon"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="750px"
+            android:layout_height="540px"
+            android:layout_marginBottom="2dp"
+            motion:layout_constraintBottom_toTopOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:scaleX="1"
+            android:scaleY="1" />
+        <Constraint
+            android:id="@+id/ashgrayonlytext"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="792px"
+            android:layout_height="320px"
+            motion:layout_constraintTop_toBottomOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="2dp"
+            android:scaleX="1" />
+        <Constraint
+            android:id="@+id/ashgrayonlytext"
+            android:scaleX="1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="792px"
+            android:layout_height="320px"
+            motion:layout_constraintTop_toBottomOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="2dp"
+            android:scaleY="1" />
+        <Constraint
+            android:id="@+id/ashblueappicon"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="750px"
+            android:layout_height="540px"
+            android:layout_marginBottom="2dp"
+            motion:layout_constraintBottom_toTopOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/ashblueonlytext"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="792px"
+            android:layout_height="320px"
+            motion:layout_constraintTop_toBottomOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="2dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/ashbluebackground"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            motion:layout_constraintBottom_toBottomOf="@id/ashgrayonlyicon"
+            motion:layout_constraintTop_toTopOf="@id/ashgrayonlyicon"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/ashgrayonlyicon"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="750px"
+            android:layout_height="540px"
+            android:layout_marginBottom="2dp"
+            motion:layout_constraintBottom_toTopOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/ashgrayonlytext"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="792px"
+            android:layout_height="320px"
+            motion:layout_constraintTop_toBottomOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="2dp"
+            android:scaleX="0"
+            android:scaleY="0" />
+        <Constraint
+            android:id="@+id/ashblueappicon"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="750px"
+            android:layout_height="540px"
+            android:layout_marginBottom="2dp"
+            motion:layout_constraintBottom_toTopOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/ashblueappicon"
+            android:scaleX="1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="750px"
+            android:layout_height="540px"
+            android:layout_marginBottom="2dp"
+            motion:layout_constraintBottom_toTopOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:scaleY="1" />
+        <Constraint
+            android:id="@+id/ashblueonlytext"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="792px"
+            android:layout_height="320px"
+            motion:layout_constraintTop_toBottomOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="2dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/ashblueonlytext"
+            android:scaleX="1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="792px"
+            android:layout_height="320px"
+            motion:layout_constraintTop_toBottomOf="@id/horizontal_line"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="2dp"
+            android:scaleY="1" />
+    </ConstraintSet>
+</MotionScene>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    app:layoutDescription="@xml/splash_animation_scene"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ashbluebackground"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/bg"
+        app:layout_constraintBottom_toBottomOf="@id/ashgrayonlyicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ashgrayonlyicon" />
+
+    <ImageView
+        android:id="@+id/ashgrayonlyicon"
+        android:layout_width="750dp"
+        android:layout_height="540dp"
+        android:layout_marginBottom="2dp"
+        android:src="@drawable/ashgrayonlyicon"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ashgrayonlytext"
+        android:layout_width="792dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/ashgrayonlytext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line" />
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ashblueappicon"
+        android:layout_width="750dp"
+        android:layout_height="540dp"
+        android:layout_marginBottom="2dp"
+        android:src="@drawable/ashblueonlyicon"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ashblueonlytext"
+        android:layout_width="792dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/ashblueonlytext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
