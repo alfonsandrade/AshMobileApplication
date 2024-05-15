@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@+id/ash_resume_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
- />
+        />
 
     <ImageView
         android:id="@+id/ashblueappicon"
@@ -52,32 +52,56 @@
 
     <ImageButton
         android:id="@+id/ash_resume_button"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/resume_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ash_base_return_button"
         android:background="@android:color/transparent"
         android:padding="10dp"/>
 
     <ImageButton
         android:id="@+id/ash_fov_button"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/fov_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf ="@id/ash_live_button"
         app:layout_constraintStart_toEndOf="@id/ash_resume_button"
         android:background="@android:color/transparent"
         android:padding="10dp"/>
 
     <ImageButton
+        android:id="@+id/ash_live_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ash_live_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ash_fov_button"
+        android:background="@android:color/transparent"
+        android:padding="10dp"/>
+
+    <ImageButton
         android:id="@+id/ash_home_button"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home_button"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ash_resume_button"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="10dp"/>
+
+    <ImageButton
+        android:id="@+id/ash_base_return_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/home_button"
         android:background="@android:color/transparent"
@@ -88,12 +112,12 @@
 
     <ImageView
         android:id="@+id/ash_wificheck"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@android:color/transparent"
         android:padding="10dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ash_nowifi"
+        android:src="@drawable/ash_yeswifi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@id/ash_fov_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,8 +126,8 @@
 
     <ImageView
         android:id="@+id/ash_bluetoothcheck"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ash_bluetooth_check"
         android:background="@android:color/transparent"

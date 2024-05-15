@@ -1,5 +1,7 @@
 package com.example.ashmobileapplication;
 
+import android.util.Log;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -11,6 +13,7 @@ import java.io.IOException;
 
 public class HttpCommunicator implements NetworkCommunicator {
     private OkHttpClient client;
+
     public HttpCommunicator() {
         this.client = new OkHttpClient();
     }
@@ -26,6 +29,7 @@ public class HttpCommunicator implements NetworkCommunicator {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Log.d("HttpCommunicator", "Failed to send message: " + e.getMessage());
                 callback.onFailure(e.getMessage());
             }
 
@@ -33,11 +37,15 @@ public class HttpCommunicator implements NetworkCommunicator {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful() && response.body() != null) {
                     String responseBody = response.body().string();
+                    Log.d("HttpCommunicator", "Response received: " + responseBody);
                     callback.onSuccess(responseBody);
                 } else {
+                    Log.d("HttpCommunicator", "Error response received: " + response.code());
                     callback.onFailure("Server responded with error: " + response.code());
                 }
             }
         });
     }
 }
+
+
