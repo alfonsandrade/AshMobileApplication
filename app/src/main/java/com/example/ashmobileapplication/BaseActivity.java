@@ -11,7 +11,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bluetoothManager = MyBluetoothManager.getInstance();
+        bluetoothManager = MyBluetoothManager.getInstance(); // Use singleton instance
     }
 
     protected void showToast(String message) {
