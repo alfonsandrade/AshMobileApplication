@@ -2,6 +2,8 @@ package com.example.ashmobileapplication;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -17,10 +19,9 @@ public class HttpCommunicator implements NetworkCommunicator {
     public HttpCommunicator() {
         this.client = new OkHttpClient();
     }
-
     @Override
-    public void sendMessage(String url, String payload, NetworkCallback callback) {
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), payload);
+    public void sendMessage(String url, String payload, ResponseHandler.ResponseCallback callback) {
+        RequestBody body = RequestBody.create(payload, okhttp3.MediaType.parse("application/json; charset=utf-8"));
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
@@ -28,24 +29,22 @@ public class HttpCommunicator implements NetworkCommunicator {
 
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("HttpCommunicator", "Failed to send message: " + e.getMessage());
-                callback.onFailure(e.getMessage());
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                callback.onFailure(ErrorCode.SERVICE_UNAVAILABLE, "Failed to send message: " + e.getMessage());
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful() && response.body() != null) {
                     String responseBody = response.body().string();
-                    Log.d("HttpCommunicator", "Response received: " + responseBody);
-                    callback.onSuccess(responseBody);
+                    ResponseHandler.handleResponse(responseBody, callback);
                 } else {
-                    Log.d("HttpCommunicator", "Error response received: " + response.code());
-                    callback.onFailure("Server responded with error: " + response.code());
+                    callback.onFailure(response.code(), "Server responded with error: " + response.code());
                 }
             }
         });
     }
+
 }
 
 

@@ -4,46 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
-public class CatchingLiveProcessActivity extends BaseActivity {
+public class CatchingMainProcessActivity extends BaseActivity {
     private boolean isPaused = false;
     private CommandScheduler commandScheduler;
 
-<<<<<<< Updated upstream:app/src/main/java/com/example/ashmobileapplication/CatchingActivity.java
-public class CatchingActivity extends AppCompatActivity {
-=======
->>>>>>> Stashed changes:app/src/main/java/com/example/ashmobileapplication/CatchingLiveProcessActivity.java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.catching_live_process);
+        setContentView(R.layout.catching_main_process);
 
         commandScheduler = new CommandScheduler(MyBluetoothManager.getInstance());
 
         ImageButton fovButton = findViewById(R.id.ash_fov_button);
-        ImageButton liveButton = findViewById(R.id.ash_live_button);
         fovButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CatchingActivity.this, FovActivity.class);
+                Intent intent = new Intent(CatchingMainProcessActivity.this, FovActivity.class);
                 startActivity(intent);
             }
         });
 
-        liveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-<<<<<<< Updated upstream:app/src/main/java/com/example/ashmobileapplication/CatchingActivity.java
-                Intent intent = new Intent( CatchingActivity.this, LiveActivity.class);
-=======
-                Intent intent = new Intent(CatchingLiveProcessActivity.this, LiveActivity.class);
->>>>>>> Stashed changes:app/src/main/java/com/example/ashmobileapplication/CatchingLiveProcessActivity.java
-                startActivity(intent);
-            }
-        });
-
-        ImageButton returnButton = findViewById(R.id.ash_base_return_button);
+        ImageButton returnButton = findViewById(R.id.ash_home_button);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
