@@ -1,0 +1,9 @@
+<resources>
+    <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/blueashbasecolor</item>
+        <item name="android:textColorPrimary">@color/blueashbasecolor</item>
+        <item name="android:textColorSecondary">@color/blueashbasecolor</item>
+        <item name="android:fontFamily">@font/press_start_2p</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+</resources>

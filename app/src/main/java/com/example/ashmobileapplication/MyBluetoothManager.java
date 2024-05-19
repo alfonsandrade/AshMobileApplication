@@ -19,7 +19,7 @@ public class MyBluetoothManager {
     private BluetoothSocket socket;
     private OutputStream outputStream;
     private InputStream inputStream;
-    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Example UUID
+    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     public interface ConnectionCallback {
         void onConnectionSuccess();

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg">
+
+    <ImageView
+        android:id="@+id/battery_icon"
+        android:layout_width="75dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ash_battery_0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp" />
+
+    <ImageView
+        android:id="@+id/schedule_screen_title"
+        android:layout_width="310dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ash_schedule_title"
+        app:layout_constraintEnd_toStartOf="@id/battery_icon"
+        app:layout_constraintRight_toLeftOf="@id/battery_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp" />
+
+    <TimePicker
+        android:id="@+id/start_time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/TimePickerTheme"
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@id/end_time_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_screen_title" />
+
+    <ImageView
+        android:id="@+id/start_time_button"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:theme="@style/TimePickerTheme"
+        android:timePickerMode="spinner"
+        android:src="@drawable/start_schedule_button"
+        app:layout_constraintBottom_toTopOf="@id/start_time_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_screen_title" />
+
+    <ImageView
+        android:id="@+id/end_time_button"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:theme="@style/TimePickerTheme"
+        android:timePickerMode="spinner"
+        android:src="@drawable/end_schedule_button"
+        app:layout_constraintBottom_toTopOf="@id/end_time_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_time_picker" />
+
+    <TimePicker
+        android:id="@+id/end_time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/TimePickerTheme"
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@+id/send_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/end_time_button"/>
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/back_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="10dp" />
+
+    <ImageButton
+        android:id="@+id/send_button"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ash_send_schedule"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

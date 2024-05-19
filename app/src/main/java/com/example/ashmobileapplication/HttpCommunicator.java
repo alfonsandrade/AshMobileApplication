@@ -47,5 +47,3 @@ public class HttpCommunicator implements NetworkCommunicator {
         });
     }
 }
-
-
