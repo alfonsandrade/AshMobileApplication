@@ -19,6 +19,7 @@ public class ScheduleActivity extends BaseActivity {
 
         startTimePicker = findViewById(R.id.start_time_picker);
         endTimePicker = findViewById(R.id.end_time_picker);
+        batteryIcon = findViewById(R.id.battery_icon); // Ensure battery icon is set
 
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -41,5 +42,11 @@ public class ScheduleActivity extends BaseActivity {
                 commandScheduler.scheduleCommand(startTime, endTime);
             }
         });
+
+        if (bluetoothManager.isConnected()) {
+            bluetoothManager.startListening(robotStatusHandler);
+        } else {
+            handleBluetoothConnection();
+        }
     }
 }

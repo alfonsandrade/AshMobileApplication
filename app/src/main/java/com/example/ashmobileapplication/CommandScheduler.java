@@ -1,7 +1,7 @@
 package com.example.ashmobileapplication;
 
-import org.json.JSONObject;
 import android.util.Log;
+import org.json.JSONObject;
 
 public class CommandScheduler {
     private MyBluetoothManager bluetoothManager;

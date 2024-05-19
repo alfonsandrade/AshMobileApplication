@@ -7,14 +7,16 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class ConnectionActivity extends BaseActivity {
+public class ConnectionActivity extends AppCompatActivity {
     private static final int REQUEST_BLUETOOTH_PERMISSIONS = 101;
     private MyBluetoothManager bluetoothManager;
 
@@ -91,12 +93,14 @@ public class ConnectionActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void handleBluetoothConnection() {
+    private void handleBluetoothConnection() {
         bluetoothManager.connectToDevice(this, new MyBluetoothManager.ConnectionCallback() {
             @Override
             public void onConnectionSuccess() {
-                runOnUiThread(() -> goToHomeScreen());
+                runOnUiThread(() -> {
+                    showToast("Bluetooth connected successfully");
+                    goToHomeScreen();
+                });
             }
 
             @Override
@@ -110,6 +114,10 @@ public class ConnectionActivity extends BaseActivity {
         Intent intent = new Intent(ConnectionActivity.this, HomePageActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

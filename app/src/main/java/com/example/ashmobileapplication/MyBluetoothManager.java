@@ -1,6 +1,5 @@
 package com.example.ashmobileapplication;
 
-import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -10,8 +9,10 @@ import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
@@ -25,6 +26,7 @@ public class MyBluetoothManager {
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private static final String ESP32_MAC_ADDRESS = "8C:4B:14:9A:46:C2";
     private static final String TAG = "MyBluetoothManager";
+    private BufferedReader reader;
 
     private MyBluetoothManager() {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -46,7 +48,7 @@ public class MyBluetoothManager {
     }
 
     public boolean isDevicePaired(Context context) {
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             return false;
         }
         Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
@@ -61,7 +63,7 @@ public class MyBluetoothManager {
     }
 
     public void connectToDevice(Context context, final ConnectionCallback callback) {
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             callback.onConnectionFailed();
             return;
         }
@@ -128,6 +130,44 @@ public class MyBluetoothManager {
                 callback.onFailure(ErrorCode.SERVICE_UNAVAILABLE, "Error reading from input stream");
             }
         }).start();
+    }
+
+    public void startListening(RobotStatusHandler handler) {
+        new Thread(() -> {
+            if (socket == null) {
+                Log.e(TAG, "Socket is null, cannot start listening");
+                return;
+            }
+
+            try {
+                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                while (true) {
+                    String jsonStatus = reader.readLine();
+                    if (jsonStatus != null && !jsonStatus.isEmpty()) {
+                        handler.handleStatusUpdate(jsonStatus);
+                    }
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "Error reading from input stream", e);
+            }
+        }).start();
+    }
+
+    public boolean isConnected() {
+        return socket != null && socket.isConnected();
+    }
+
+    public void disconnect() {
+        try {
+            if (socket != null) {
+                socket.close();
+                socket = null;
+                inputStream = null;
+                outputStream = null;
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "Error closing socket", e);
+        }
     }
 
     public interface ConnectionCallback {
