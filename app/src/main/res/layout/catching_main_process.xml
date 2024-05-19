@@ -35,7 +35,7 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ash_ball_collection_counter"
-        app:layout_constraintBottom_toTopOf="@+id/ash_resume_button"
+        app:layout_constraintBottom_toTopOf="@+id/ash_pause_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ash_resume_button"
+        android:id="@+id/ash_pause_button"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:scaleType="fitCenter"
@@ -71,7 +71,7 @@
         android:src="@drawable/fov_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ash_resume_button"
+        app:layout_constraintStart_toEndOf="@id/ash_pause_button"
         android:background="@android:color/transparent"
         android:padding="10dp"/>
 
@@ -83,7 +83,7 @@
         android:src="@drawable/home_button"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ash_resume_button"
+        app:layout_constraintEnd_toStartOf="@id/ash_pause_button"
         app:layout_constraintStart_toStartOf="parent"
         android:padding="10dp"/>
 

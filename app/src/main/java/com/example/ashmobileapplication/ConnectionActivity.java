@@ -3,31 +3,37 @@ package com.example.ashmobileapplication;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class ConnectionActivity extends AppCompatActivity {
-    private static final int REQUEST_ENABLE_BT = 1;
+public class ConnectionActivity extends BaseActivity {
     private static final int REQUEST_BLUETOOTH_PERMISSIONS = 101;
     private MyBluetoothManager bluetoothManager;
-    private static final String ESP32_MAC_ADDRESS = "8C:4B:14:9A:46:C2";
+
+    private final ActivityResultLauncher<Intent> enableBluetoothLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    checkBluetoothPermissions();
+                } else {
+                    showToast("Bluetooth enabling is required for this app to function");
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connection_process);
 
-        bluetoothManager = new MyBluetoothManager(this);
+        bluetoothManager = MyBluetoothManager.getInstance();
 
         ImageButton bluetoothButton = findViewById(R.id.ash_bluetooth_icon);
         bluetoothButton.setOnClickListener(new View.OnClickListener() {
@@ -40,15 +46,19 @@ public class ConnectionActivity extends AppCompatActivity {
 
     private void connectBluetooth() {
         if (!bluetoothManager.isBluetoothSupported()) {
-            Toast.makeText(this, "Bluetooth not supported on this device", Toast.LENGTH_SHORT).show();
+            showToast("Bluetooth not supported on this device");
             return;
         }
 
         if (bluetoothManager.isBluetoothEnabled()) {
             checkBluetoothPermissions();
         } else {
-            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_BLUETOOTH_PERMISSIONS);
+            } else {
+                Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                enableBluetoothLauncher.launch(enableIntent);
+            }
         }
     }
 
@@ -74,66 +84,32 @@ public class ConnectionActivity extends AppCompatActivity {
     }
 
     private void checkBluetoothConnection() {
-        if (bluetoothManager.isDevicePaired(ESP32_MAC_ADDRESS)) {
-            bluetoothManager.connectToDevice(ESP32_MAC_ADDRESS, new MyBluetoothManager.ConnectionCallback() {
-                @Override
-                public void onConnectionSuccess() {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String url = "http://192.168.68.200/connection";
-                            String payload = "{}";
-                            HttpCommunicator httpCommunicator = new HttpCommunicator();
-                            httpCommunicator.sendMessage(url, payload, new NetworkCommunicator.NetworkCallback() {
-                                @Override
-                                public void onSuccess(String response) {
-                                    SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putBoolean("web_server_connected", true);
-                                    editor.apply();
-                                    goToHomeScreen();
-                                }
-
-                                @Override
-                                public void onFailure(String error) {
-                                    // Store the unsuccessful connection status
-                                    SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putBoolean("web_server_connected", false);
-                                    editor.apply();
-
-                                    goToHomeScreen();
-                                }
-                            });
-                        }
-                    });
-                    bluetoothManager.sendMessage("Hello ESP32");
-                    bluetoothManager.listenForMessages();
-                }
-
-                @Override
-                public void onConnectionFailed() {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            showErrorToast();
-                        }
-                    });
-                }
-            });
+        if (bluetoothManager.isDevicePaired(this)) {
+            handleBluetoothConnection();
         } else {
-            Toast.makeText(this, "Device not paired. Please pair the device first.", Toast.LENGTH_SHORT).show();
+            showToast("Device not paired. Please pair the device first.");
         }
+    }
+
+    @Override
+    protected void handleBluetoothConnection() {
+        bluetoothManager.connectToDevice(this, new MyBluetoothManager.ConnectionCallback() {
+            @Override
+            public void onConnectionSuccess() {
+                runOnUiThread(() -> goToHomeScreen());
+            }
+
+            @Override
+            public void onConnectionFailed() {
+                runOnUiThread(() -> showToast("Failed to connect to the device"));
+            }
+        });
     }
 
     private void goToHomeScreen() {
         Intent intent = new Intent(ConnectionActivity.this, HomePageActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    private void showErrorToast() {
-        Toast.makeText(this, "Failed to connect to the robot. Please try again.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -143,7 +119,7 @@ public class ConnectionActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 checkBluetoothConnection();
             } else {
-                Toast.makeText(this, "Bluetooth permissions are required to connect", Toast.LENGTH_SHORT).show();
+                showToast("Bluetooth permissions are required to connect");
             }
         }
     }
