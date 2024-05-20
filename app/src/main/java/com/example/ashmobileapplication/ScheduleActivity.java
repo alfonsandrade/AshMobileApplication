@@ -1,9 +1,9 @@
 package com.example.ashmobileapplication;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.TextView;
 
 public class ScheduleActivity extends BaseActivity {
     private TimePicker startTimePicker;
@@ -22,26 +22,21 @@ public class ScheduleActivity extends BaseActivity {
         batteryIcon = findViewById(R.id.battery_icon); // Ensure battery icon is set
 
         ImageButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         ImageButton sendButton = findViewById(R.id.send_button);
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int startHour = startTimePicker.getHour();
-                int startMinute = startTimePicker.getMinute();
-                int endHour = endTimePicker.getHour();
-                int endMinute = endTimePicker.getMinute();
-                String startTime = String.format("%02d:%02d", startHour, startMinute);
-                String endTime = String.format("%02d:%02d", endHour, endMinute);
-                commandScheduler.scheduleCommand(startTime, endTime);
-            }
+        sendButton.setOnClickListener(v -> {
+            int startHour = startTimePicker.getHour();
+            int startMinute = startTimePicker.getMinute();
+            int endHour = endTimePicker.getHour();
+            int endMinute = endTimePicker.getMinute();
+            String startTime = String.format("%02d:%02d", startHour, startMinute);
+            String endTime = String.format("%02d:%02d", endHour, endMinute);
+            commandScheduler.scheduleCommand(startTime, endTime);
         });
+
+        // Initialize the RobotStatusHandler
+        robotStatusHandler = new RobotStatusHandler(this, new TextView(this)); // Replace new TextView(this) with the actual TextView for balls collected
 
         if (bluetoothManager.isConnected()) {
             bluetoothManager.startListening(robotStatusHandler);

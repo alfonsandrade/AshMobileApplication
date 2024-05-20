@@ -9,18 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
     protected MyBluetoothManager bluetoothManager;
     protected ImageView batteryIcon;
-    protected RobotStatusHandler robotStatusHandler;
+    protected RobotStatusHandler robotStatusHandler; // Add this line
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bluetoothManager = MyBluetoothManager.getInstance(); // Use singleton instance
-        robotStatusHandler = new RobotStatusHandler(this);
-
-        // Only start listening if already connected
-        if (bluetoothManager.isConnected()) {
-            bluetoothManager.startListening(robotStatusHandler);
-        }
     }
 
     protected void showToast(String message) {

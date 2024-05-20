@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
 
 public class FovActivity extends BaseActivity {
     @Override
@@ -16,12 +15,10 @@ public class FovActivity extends BaseActivity {
         batteryIcon = findViewById(R.id.battery_icon);
 
         ImageButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
+
+        // Initialize the RobotStatusHandler
+        robotStatusHandler = new RobotStatusHandler(this, new TextView(this)); // Replace new TextView(this) with the actual TextView for balls collected
 
         if (bluetoothManager.isConnected()) {
             bluetoothManager.startListening(robotStatusHandler);

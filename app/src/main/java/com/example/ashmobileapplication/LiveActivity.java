@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.common.MediaItem;
 import androidx.media3.ui.PlayerView;
@@ -23,15 +23,13 @@ public class LiveActivity extends BaseActivity {
         batteryIcon = findViewById(R.id.battery_icon);
 
         ImageButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         playerView = findViewById(R.id.video_view);
         setupPlayer();
+
+        // Initialize the RobotStatusHandler
+        robotStatusHandler = new RobotStatusHandler(this, new TextView(this)); // Replace new TextView(this) with the actual TextView for balls collected
 
         if (bluetoothManager.isConnected()) {
             bluetoothManager.startListening(robotStatusHandler);
