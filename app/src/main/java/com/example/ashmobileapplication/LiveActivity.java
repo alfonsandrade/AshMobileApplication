@@ -28,8 +28,7 @@ public class LiveActivity extends BaseActivity {
         playerView = findViewById(R.id.video_view);
         setupPlayer();
 
-        // Initialize the RobotStatusHandler
-        robotStatusHandler = new RobotStatusHandler(this, new TextView(this)); // Replace new TextView(this) with the actual TextView for balls collected
+        robotStatusHandler = new RobotStatusHandler(this);
 
         if (bluetoothManager.isConnected()) {
             bluetoothManager.startListening(robotStatusHandler);

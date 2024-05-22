@@ -16,9 +16,7 @@ public class HomePageActivity extends BaseActivity {
 
         bluetoothManager = MyBluetoothManager.getInstance();
         batteryIcon = findViewById(R.id.battery_icon);
-
-        // Initialize the RobotStatusHandler
-        robotStatusHandler = new RobotStatusHandler(this, new TextView(this)); // Replace new TextView(this) with the actual TextView for balls collected
+        robotStatusHandler = new RobotStatusHandler(this);
 
         ImageButton catchButton = findViewById(R.id.catch_button);
         CommandScheduler commandScheduler = new CommandScheduler(bluetoothManager);
@@ -41,7 +39,6 @@ public class HomePageActivity extends BaseActivity {
             startActivity(intent);
         });
 
-        // Ensure Bluetooth connection is handled properly
         if (bluetoothManager.isConnected()) {
             bluetoothManager.startListening(robotStatusHandler);
         } else {

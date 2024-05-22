@@ -14,6 +14,7 @@
         android:layout_width="75dp"
         android:layout_height="100dp"
         android:src="@drawable/ash_battery_0"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="10dp" />
@@ -28,8 +29,7 @@
         app:layout_constraintEnd_toStartOf="@id/battery_icon"
         app:layout_constraintRight_toLeftOf="@id/battery_icon"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp"
-        />
+        android:padding="10dp" />
 
     <!-- Ball Counter -->
     <ImageView
@@ -37,11 +37,11 @@
         android:layout_width="130dp"
         android:layout_height="100dp"
         android:scaleType="fitCenter"
+        android:visibility="invisible"
         android:src="@drawable/ash_ball_collection_counter"
         app:layout_constraintBottom_toTopOf="@+id/ash_pause_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/ash_ball_counter_data"
@@ -51,6 +51,7 @@
         android:scaleType="fitCenter"
         android:textFontWeight="700"
         android:textSize="24sp"
+        android:visibility="invisible"
         android:textColor="@color/white"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="@+id/ash_ball_counter"
@@ -78,10 +79,11 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sensor_signal_front"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/ashblueappicon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/catching_screen_title"/>
+        app:layout_constraintTop_toBottomOf="@id/catching_screen_title" />
 
     <ImageView
         android:id="@+id/sensor_data_front_frame"
@@ -89,23 +91,23 @@
         android:layout_height="90dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sensor_data_front_frame"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/ashblueappicon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/sensor_signal_front"
-        app:layout_constraintTop_toBottomOf="@id/catching_screen_title"/>
+        app:layout_constraintTop_toBottomOf="@id/catching_screen_title" />
 
     <TextView
         android:id="@+id/sensor_data_front"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textFontWeight="700"
-        android:textColor="@color/white"
         android:fontFamily="@font/press_start_2p"
+        android:visibility="invisible"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/sensor_data_front_frame"
         app:layout_constraintEnd_toEndOf="@+id/sensor_data_front_frame"
         app:layout_constraintStart_toStartOf="@+id/sensor_data_front_frame"
-        app:layout_constraintTop_toTopOf="@+id/sensor_data_front_frame"/>
+        app:layout_constraintTop_toTopOf="@+id/sensor_data_front_frame" />
 
     <!-- Right -->
     <ImageView
@@ -114,10 +116,11 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sensor_signal_right"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/ash_wificheck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ashblueappicon"
-        app:layout_constraintTop_toBottomOf="@id/catching_screen_title"/>
+        app:layout_constraintTop_toBottomOf="@id/catching_screen_title" />
 
     <ImageView
         android:id="@+id/sensor_data_right_frame"
@@ -125,23 +128,23 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sensor_data_right_frame"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/ash_wificheck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/sensor_signal_back"
-        app:layout_constraintTop_toBottomOf="@id/sensor_signal_right"/>
+        app:layout_constraintTop_toBottomOf="@id/sensor_signal_right" />
 
     <TextView
         android:id="@+id/sensor_data_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textFontWeight="700"
         android:textColor="@color/white"
         android:fontFamily="@font/press_start_2p"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/sensor_data_right_frame"
         app:layout_constraintEnd_toEndOf="@+id/sensor_data_right_frame"
         app:layout_constraintStart_toStartOf="@+id/sensor_data_right_frame"
-        app:layout_constraintTop_toTopOf="@+id/sensor_data_right_frame"/>
+        app:layout_constraintTop_toTopOf="@+id/sensor_data_right_frame" />
 
     <!-- Back -->
     <ImageView
@@ -150,10 +153,11 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sensor_signal_back"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/ash_ball_counter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ashblueappicon"/>
+        app:layout_constraintTop_toBottomOf="@id/ashblueappicon" />
 
     <ImageView
         android:id="@+id/sensor_data_back_frame"
@@ -161,23 +165,23 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sensor_data_back_frame"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/ash_bluetoothcheck"
         app:layout_constraintEnd_toStartOf="@id/sensor_signal_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sensor_signal_left"/>
+        app:layout_constraintTop_toBottomOf="@id/sensor_signal_left" />
 
     <TextView
         android:id="@+id/sensor_data_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textFontWeight="700"
-        android:textColor="@color/white"
         android:fontFamily="@font/press_start_2p"
+        android:visibility="invisible"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/sensor_data_back_frame"
         app:layout_constraintEnd_toEndOf="@+id/sensor_data_back_frame"
         app:layout_constraintStart_toStartOf="@+id/sensor_data_back_frame"
-        app:layout_constraintTop_toTopOf="@+id/sensor_data_back_frame"/>
+        app:layout_constraintTop_toTopOf="@+id/sensor_data_back_frame" />
 
     <!-- Left -->
     <ImageView
@@ -186,10 +190,11 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sensor_signal_left"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/ash_bluetoothcheck"
         app:layout_constraintEnd_toStartOf="@id/ashblueappicon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/catching_screen_title"/>
+        app:layout_constraintTop_toBottomOf="@id/catching_screen_title" />
 
     <ImageView
         android:id="@+id/sensor_data_left_frame"
@@ -197,23 +202,23 @@
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sensor_data_left_frame"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/sensor_signal_left"
         app:layout_constraintEnd_toStartOf="@id/sensor_signal_front"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/catching_screen_title"/>
+        app:layout_constraintTop_toBottomOf="@id/catching_screen_title" />
 
     <TextView
         android:id="@+id/sensor_data_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textFontWeight="700"
-        android:textColor="@color/white"
         android:fontFamily="@font/press_start_2p"
+        android:visibility="invisible"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/sensor_data_left_frame"
         app:layout_constraintEnd_toEndOf="@+id/sensor_data_left_frame"
         app:layout_constraintStart_toStartOf="@+id/sensor_data_left_frame"
-        app:layout_constraintTop_toTopOf="@+id/sensor_data_left_frame"/>
+        app:layout_constraintTop_toTopOf="@+id/sensor_data_left_frame" />
 
     <!-- Pause Button -->
     <ImageButton
@@ -226,7 +231,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@android:color/transparent"
-        android:padding="10dp"/>
+        android:padding="10dp" />
 
     <!-- FOV Button -->
     <ImageButton
@@ -239,7 +244,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ash_pause_button"
         android:background="@android:color/transparent"
-        android:padding="10dp"/>
+        android:padding="10dp" />
 
     <!-- Home Button -->
     <ImageButton
@@ -252,7 +257,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ash_pause_button"
         app:layout_constraintStart_toStartOf="parent"
-        android:padding="10dp"/>
+        android:padding="10dp" />
 
     <!-- Wi-Fi Check -->
     <ImageView
@@ -281,6 +286,6 @@
         app:layout_constraintEnd_toStartOf="@id/ash_ball_counter"
         app:layout_constraintTop_toTopOf="@+id/ash_ball_counter"
         app:layout_constraintStart_toStartOf="parent"
-        android:padding="10dp"/>
+        android:padding="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

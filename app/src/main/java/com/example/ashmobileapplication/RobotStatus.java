@@ -81,6 +81,18 @@ public class RobotStatus {
         return ballsCollected;
     }
 
+    public List<Coordinate> getBallsCoordinates() {
+        return ballsCoordinates;
+    }
+
+    public String getRobotStatus() {
+        return robotStatus;
+    }
+
+    public String getRobotError() {
+        return robotError;
+    }
+
     public static class Coordinate {
         private double x;
         private double y;

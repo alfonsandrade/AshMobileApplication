@@ -2,6 +2,8 @@ package com.example.ashmobileapplication;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,12 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
     protected MyBluetoothManager bluetoothManager;
     protected ImageView batteryIcon;
-    protected RobotStatusHandler robotStatusHandler; // Add this line
+    protected RobotStatusHandler robotStatusHandler;
+    protected TextView ballsCollectedView;
+    protected View ballsCollectedFrame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bluetoothManager = MyBluetoothManager.getInstance(); // Use singleton instance
+        bluetoothManager = MyBluetoothManager.getInstance();
     }
 
     protected void showToast(String message) {
@@ -44,5 +48,13 @@ public class BaseActivity extends AppCompatActivity {
         if (batteryIcon != null) {
             BatteryIconUpdater.updateBatteryIcon(batteryIcon, batteryLevel);
         }
+    }
+
+    public void setBallsCollectedView(TextView view) {
+        this.ballsCollectedView = view;
+    }
+
+    public void setBallsCollectedFrame(View frame) {
+        this.ballsCollectedFrame = frame;
     }
 }

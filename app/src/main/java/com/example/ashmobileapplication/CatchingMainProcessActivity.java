@@ -9,9 +9,7 @@ import android.widget.TextView;
 public class CatchingMainProcessActivity extends BaseActivity {
     private boolean isPaused = false;
     private CommandScheduler commandScheduler;
-    private RobotStatusHandler robotStatusHandler;
     private UltrasonicSensorHandler ultrasonicSensorHandler;
-    private TextView ballsCollectedView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +20,13 @@ public class CatchingMainProcessActivity extends BaseActivity {
         batteryIcon = findViewById(R.id.battery_icon);
 
         ballsCollectedView = findViewById(R.id.ash_ball_counter_data);
-        robotStatusHandler = new RobotStatusHandler(this, ballsCollectedView);
+        ballsCollectedFrame = findViewById(R.id.ash_ball_counter);
 
-        // Initialize sensor signal and data views
+        setBallsCollectedView(ballsCollectedView);
+        setBallsCollectedFrame(ballsCollectedFrame);
+
+        robotStatusHandler = new RobotStatusHandler(this);
+
         View sensorSignalLeft = findViewById(R.id.sensor_signal_left);
         View sensorSignalFront = findViewById(R.id.sensor_signal_front);
         View sensorSignalRight = findViewById(R.id.sensor_signal_right);
@@ -61,6 +63,8 @@ public class CatchingMainProcessActivity extends BaseActivity {
             }
             isPaused = !isPaused;
         });
+
+        batteryIcon.setVisibility(View.INVISIBLE);
 
         if (bluetoothManager.isConnected()) {
             bluetoothManager.startListening(robotStatusHandler);

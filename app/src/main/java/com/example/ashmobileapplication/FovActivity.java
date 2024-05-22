@@ -17,8 +17,7 @@ public class FovActivity extends BaseActivity {
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> finish());
 
-        // Initialize the RobotStatusHandler
-        robotStatusHandler = new RobotStatusHandler(this, new TextView(this)); // Replace new TextView(this) with the actual TextView for balls collected
+        robotStatusHandler = new RobotStatusHandler(this);
 
         if (bluetoothManager.isConnected()) {
             bluetoothManager.startListening(robotStatusHandler);

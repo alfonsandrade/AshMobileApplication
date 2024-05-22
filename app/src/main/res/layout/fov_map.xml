@@ -9,14 +9,13 @@
 
     <ImageView
         android:id="@+id/battery_icon"
-        android:layout_width="80dp"
+        android:layout_width="75dp"
         android:layout_height="100dp"
-        android:padding="10dp"
         android:src="@drawable/ash_battery_0"
-        app:layout_constraintBottom_toBottomOf="@+id/back_button"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp" />
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="100dp"

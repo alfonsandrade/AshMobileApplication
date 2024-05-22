@@ -1,10 +1,13 @@
 package com.example.ashmobileapplication;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
 public class UltrasonicSensorHandler {
+    private static final String TAG = "UltrasonicSensorHandler";
     private final View sensorSignalLeft, sensorSignalFront, sensorSignalRight, sensorSignalBack;
     private final TextView sensorDataLeft, sensorDataFront, sensorDataRight, sensorDataBack;
     private final View sensorFrameLeft, sensorFrameFront, sensorFrameRight, sensorFrameBack;
@@ -55,17 +58,47 @@ public class UltrasonicSensorHandler {
                 sensorFrame = sensorFrameBack;
                 break;
             default:
-                return; // If direction is unknown, do nothing
+                return;
         }
 
-        sensorSignal.setVisibility(View.VISIBLE);
-        sensorData.setText(String.valueOf(distance));
-        sensorFrame.setVisibility(View.VISIBLE);
+        Log.d(TAG, "Updating sensor data for direction: " + direction + " with distance: " + distance);
+        if (distance > 0) {
+            sensorData.setText(String.valueOf(distance));
+            fadeInView(sensorSignal);
+            fadeInView(sensorData);
+            fadeInView(sensorFrame);
 
-        handler.postDelayed(() -> {
-            sensorSignal.setVisibility(View.INVISIBLE);
-            sensorData.setVisibility(View.INVISIBLE);
-            sensorFrame.setVisibility(View.INVISIBLE);
-        }, 10000);
+            handler.postDelayed(() -> {
+                fadeOutView(sensorSignal);
+                fadeOutView(sensorData);
+                fadeOutView(sensorFrame);
+            }, 5000);
+        }
+    }
+
+    private void fadeInView(View view) {
+        if (view != null) {
+            view.setVisibility(View.VISIBLE);
+            AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+            fadeIn.setDuration(1000);
+            fadeIn.setFillAfter(true);
+            view.startAnimation(fadeIn);
+            Log.d(TAG, "Fade in view: " + view.getId());
+        }
+    }
+
+    private void fadeOutView(View view) {
+        if (view != null) {
+            AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
+            fadeOut.setDuration(1000);
+            fadeOut.setFillAfter(true);
+            view.startAnimation(fadeOut);
+
+            handler.postDelayed(() -> {
+                view.setVisibility(View.INVISIBLE);
+                view.clearAnimation();
+                Log.d(TAG, "View set to invisible and animation cleared: " + view.getId());
+            }, 1000);
+        }
     }
 }
