@@ -14,6 +14,11 @@ public class BaseActivity extends AppCompatActivity {
     protected RobotStatusHandler robotStatusHandler;
     protected TextView ballsCollectedView;
     protected View ballsCollectedFrame;
+    protected TextView sensDistFrontView;
+    protected TextView sensDistRightView;
+    protected TextView sensDistBackView;
+    protected TextView sensDistLeftView;
+    protected UltrasonicSensorHandler ultrasonicSensorHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,5 +61,22 @@ public class BaseActivity extends AppCompatActivity {
 
     public void setBallsCollectedFrame(View frame) {
         this.ballsCollectedFrame = frame;
+    }
+
+    public void setSensDistViews(TextView front, TextView right, TextView back, TextView left) {
+        this.sensDistFrontView = front;
+        this.sensDistRightView = right;
+        this.sensDistBackView = back;
+        this.sensDistLeftView = left;
+    }
+
+    public void setUltrasonicSensorHandler(UltrasonicSensorHandler handler) {
+        this.ultrasonicSensorHandler = handler;
+    }
+
+    public void updateSensorData(String direction, double distance) {
+        if (ultrasonicSensorHandler != null) {
+            ultrasonicSensorHandler.updateSensorData(direction, distance);
+        }
     }
 }

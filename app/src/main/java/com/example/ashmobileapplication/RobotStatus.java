@@ -34,24 +34,28 @@ public class RobotStatus {
 
     public static RobotStatus fromJson(String jsonString) throws JSONException {
         JSONObject jsonObject = new JSONObject(jsonString);
-        double sensDistLeft = jsonObject.getDouble("sens_dist_left");
-        double sensDistFront = jsonObject.getDouble("sens_dist_front");
-        double sensDistRight = jsonObject.getDouble("sens_dist_right");
-        double sensDistBack = jsonObject.getDouble("sens_dist_back");
-        double batteryLevel = jsonObject.getDouble("battery_level");
-        int ballsCollected = jsonObject.getInt("balls_collected");
+        double sensDistLeft = jsonObject.optDouble("sens_dist_left", 0.0);
+        double sensDistFront = jsonObject.optDouble("sens_dist_front", 0.0);
+        double sensDistRight = jsonObject.optDouble("sens_dist_right", 0.0);
+        double sensDistBack = jsonObject.optDouble("sens_dist_back", 0.0);
+        double batteryLevel = jsonObject.optDouble("battery_level", 0.0);
+        int ballsCollected = jsonObject.optInt("balls_collected", 0);
 
-        JSONArray ballsCoordinatesArray = jsonObject.getJSONArray("balls_coordinates");
+        JSONArray ballsCoordinatesArray = jsonObject.optJSONArray("balls_coordinates");
         List<Coordinate> ballsCoordinates = new ArrayList<>();
-        for (int i = 0; i < ballsCoordinatesArray.length(); i++) {
-            JSONObject coordinateObject = ballsCoordinatesArray.getJSONObject(i);
-            double x = coordinateObject.getDouble("X");
-            double y = coordinateObject.getDouble("Y");
-            ballsCoordinates.add(new Coordinate(x, y));
+        if (ballsCoordinatesArray != null) {
+            for (int i = 0; i < ballsCoordinatesArray.length(); i++) {
+                JSONObject coordinateObject = ballsCoordinatesArray.optJSONObject(i);
+                if (coordinateObject != null) {
+                    double x = coordinateObject.optDouble("X", 0.0);
+                    double y = coordinateObject.optDouble("Y", 0.0);
+                    ballsCoordinates.add(new Coordinate(x, y));
+                }
+            }
         }
 
-        String robotStatus = jsonObject.getString("robot_status");
-        String robotError = jsonObject.getString("robot_error");
+        String robotStatus = jsonObject.optString("robot_status", "");
+        String robotError = jsonObject.optString("robot_error", "");
 
         return new RobotStatus(sensDistLeft, sensDistFront, sensDistRight, sensDistBack, batteryLevel,
                 ballsCollected, ballsCoordinates, robotStatus, robotError);

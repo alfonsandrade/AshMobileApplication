@@ -2,21 +2,18 @@ package com.example.ashmobileapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
+
 import com.google.android.material.snackbar.Snackbar;
+
 public class CatchingMainProcessActivity extends BaseActivity {
     private boolean isPaused = false;
     private CommandScheduler commandScheduler;
-    private UltrasonicSensorHandler ultrasonicSensorHandler;
     private ImageView ashBlueAppIcon;
     private String robotStatus = "collecting_balls";
 
@@ -51,9 +48,12 @@ public class CatchingMainProcessActivity extends BaseActivity {
         View sensorFrameRight = findViewById(R.id.sensor_data_right_frame);
         View sensorFrameBack = findViewById(R.id.sensor_data_back_frame);
 
-        ultrasonicSensorHandler = new UltrasonicSensorHandler(sensorSignalLeft, sensorSignalFront, sensorSignalRight, sensorSignalBack,
+        UltrasonicSensorHandler ultrasonicSensorHandler = new UltrasonicSensorHandler(sensorSignalLeft, sensorSignalFront, sensorSignalRight, sensorSignalBack,
                 sensorDataLeft, sensorDataFront, sensorDataRight, sensorDataBack,
                 sensorFrameLeft, sensorFrameFront, sensorFrameRight, sensorFrameBack);
+
+        setSensDistViews(sensorDataFront, sensorDataRight, sensorDataBack, sensorDataLeft);
+        setUltrasonicSensorHandler(ultrasonicSensorHandler);
 
         ImageButton fovButton = findViewById(R.id.ash_fov_button);
         fovButton.setOnClickListener(v -> startActivity(new Intent(CatchingMainProcessActivity.this, FovActivity.class)));
@@ -119,8 +119,5 @@ public class CatchingMainProcessActivity extends BaseActivity {
         snackbarLayout.removeAllViews();
         snackbarLayout.addView(customView);
         snackbar.show();
-    }
-    public void updateSensorData(String direction, double distance) {
-        ultrasonicSensorHandler.updateSensorData(direction, distance);
     }
 }

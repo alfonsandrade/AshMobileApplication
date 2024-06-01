@@ -24,9 +24,10 @@ public class MyBluetoothManager {
     private OutputStream outputStream;
     private InputStream inputStream;
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    private static final String ESP32_MAC_ADDRESS = "8C:4B:14:9A:46:C2";
+    private static final String ESP32_MAC_ADDRESS = "C8:F0:9E:9A:42:EE";
     private static final String TAG = "MyBluetoothManager";
     private BufferedReader reader;
+    private StringBuilder jsonBuffer = new StringBuilder();
 
     private MyBluetoothManager() {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -142,9 +143,14 @@ public class MyBluetoothManager {
             try {
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 while (true) {
-                    String jsonStatus = reader.readLine();
-                    if (jsonStatus != null && !jsonStatus.isEmpty()) {
-                        handler.handleStatusUpdate(jsonStatus);
+                    String line = reader.readLine();
+                    if (line != null && !line.isEmpty()) {
+                        jsonBuffer.append(line);
+                        if (line.endsWith("}")) {
+                            String jsonStatus = jsonBuffer.toString();
+                            jsonBuffer.setLength(0);  // Clear the buffer
+                            handler.handleStatusUpdate(jsonStatus);
+                        }
                     }
                 }
             } catch (IOException e) {
