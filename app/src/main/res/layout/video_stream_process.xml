@@ -37,10 +37,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <!-- Player View for Media3 -->
     <androidx.media3.ui.PlayerView
         android:id="@+id/video_view"
         android:layout_width="346dp"

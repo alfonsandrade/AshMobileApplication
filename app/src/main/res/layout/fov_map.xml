@@ -5,7 +5,8 @@
     android:id="@+id/mainFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_bg">
+    android:background="@color/gray_bg"
+    tools:context=".FovActivity">
 
     <ImageView
         android:id="@+id/battery_icon"
@@ -16,15 +17,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="10dp" />
+
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_width="100dp"
-        android:layout_height="90dp"
         android:background="@android:color/transparent"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
         android:src="@drawable/back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp" />
+        android:scaleType="fitCenter"
+        android:paddingTop="5dp"/>
 
     <ImageView
         android:id="@+id/ashfovmap"
@@ -32,6 +35,17 @@
         android:layout_height="0dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ash_fov_map"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="90dp"
+        android:paddingBottom="5dp"/>
+
+    <FrameLayout
+        android:id="@+id/ball_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,14 +2,23 @@ package com.example.ashmobileapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.widget.ImageView;
+import android.widget.Toast;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 public class CatchingMainProcessActivity extends BaseActivity {
     private boolean isPaused = false;
     private CommandScheduler commandScheduler;
     private UltrasonicSensorHandler ultrasonicSensorHandler;
+    private ImageView ashBlueAppIcon;
+    private String robotStatus = "collecting_balls";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +73,12 @@ public class CatchingMainProcessActivity extends BaseActivity {
             isPaused = !isPaused;
         });
 
+        ashBlueAppIcon = findViewById(R.id.ashblueappicon);
+        ashBlueAppIcon.setOnLongClickListener(v -> {
+            showRobotStatusSnackbar(robotStatus);
+            return true;
+        });
+
         batteryIcon.setVisibility(View.INVISIBLE);
 
         if (bluetoothManager.isConnected()) {
@@ -73,6 +88,38 @@ public class CatchingMainProcessActivity extends BaseActivity {
         }
     }
 
+    private void showRobotStatusSnackbar(String status) {
+        String message;
+        switch (status) {
+            case "collecting_balls":
+                message = "Right now I'm collecting balls";
+                break;
+            case "searching_for_balls":
+                message = "Right now I'm searching for balls";
+                break;
+            case "returning_to_base":
+                message = "Right now I'm returning to base";
+                break;
+            case "paused":
+                message = "I am paused";
+                break;
+            default:
+                message = "Status unknown";
+        }
+
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.mainFragment), "", Snackbar.LENGTH_LONG);
+        snackbar.setDuration(7000);
+        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+        LayoutInflater inflater = getLayoutInflater();
+        View customView = inflater.inflate(R.layout.snackbar_robot_status, null);
+        ImageView snackbarIcon = customView.findViewById(R.id.snackbar_icon);
+        snackbarIcon.setImageResource(R.drawable.ash_toast_message_icon);
+        TextView snackbarText = customView.findViewById(R.id.snackbar_text);
+        snackbarText.setText(message);
+        snackbarLayout.removeAllViews();
+        snackbarLayout.addView(customView);
+        snackbar.show();
+    }
     public void updateSensorData(String direction, double distance) {
         ultrasonicSensorHandler.updateSensorData(direction, distance);
     }

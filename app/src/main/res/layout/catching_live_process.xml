@@ -21,13 +21,13 @@
         android:id="@+id/catching_screen_title"
         android:layout_width="310dp"
         android:layout_height="100dp"
+        android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/catching_screen_title"
         app:layout_constraintEnd_toStartOf="@id/battery_icon"
         app:layout_constraintRight_toLeftOf="@id/battery_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ash_ball_counter"
@@ -106,7 +106,6 @@
         app:layout_constraintStart_toStartOf="@+id/sensor_data_front_frame"
         app:layout_constraintTop_toTopOf="@+id/sensor_data_front_frame"/>
 
-    <!-- Right -->
     <ImageView
         android:id="@+id/sensor_signal_right"
         android:layout_width="100dp"
@@ -145,7 +144,6 @@
         app:layout_constraintStart_toStartOf="@+id/sensor_data_right_frame"
         app:layout_constraintTop_toTopOf="@+id/sensor_data_right_frame"/>
 
-    <!-- Back -->
     <ImageView
         android:id="@+id/sensor_signal_back"
         android:layout_width="100dp"
@@ -184,7 +182,6 @@
         app:layout_constraintStart_toStartOf="@+id/sensor_data_back_frame"
         app:layout_constraintTop_toTopOf="@+id/sensor_data_back_frame"/>
 
-    <!-- Left -->
     <ImageView
         android:id="@+id/sensor_signal_left"
         android:layout_width="100dp"

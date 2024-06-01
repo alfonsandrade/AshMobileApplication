@@ -8,7 +8,6 @@
     android:background="@color/gray_bg"
     tools:context=".CatchingMainProcessActivity">
 
-    <!-- Battery Icon -->
     <ImageView
         android:id="@+id/battery_icon"
         android:layout_width="75dp"
@@ -19,19 +18,18 @@
         app:layout_constraintTop_toTopOf="parent"
         android:padding="10dp" />
 
-    <!-- Catching Screen Title -->
     <ImageView
         android:id="@+id/catching_screen_title"
         android:layout_width="310dp"
         android:layout_height="100dp"
+        android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/catching_screen_title"
         app:layout_constraintEnd_toStartOf="@id/battery_icon"
         app:layout_constraintRight_toLeftOf="@id/battery_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Ball Counter -->
     <ImageView
         android:id="@+id/ash_ball_counter"
         android:layout_width="130dp"
@@ -59,7 +57,6 @@
         app:layout_constraintStart_toStartOf="@+id/ash_ball_counter"
         app:layout_constraintTop_toTopOf="@+id/ash_ball_counter" />
 
-    <!-- App Icon -->
     <ImageView
         android:id="@+id/ashblueappicon"
         android:layout_width="150dp"
@@ -71,8 +68,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Sensor Signals and Data Frames -->
-    <!-- Front -->
     <ImageView
         android:id="@+id/sensor_signal_front"
         android:layout_width="100dp"
@@ -109,7 +104,6 @@
         app:layout_constraintStart_toStartOf="@+id/sensor_data_front_frame"
         app:layout_constraintTop_toTopOf="@+id/sensor_data_front_frame" />
 
-    <!-- Right -->
     <ImageView
         android:id="@+id/sensor_signal_right"
         android:layout_width="100dp"
@@ -146,7 +140,6 @@
         app:layout_constraintStart_toStartOf="@+id/sensor_data_right_frame"
         app:layout_constraintTop_toTopOf="@+id/sensor_data_right_frame" />
 
-    <!-- Back -->
     <ImageView
         android:id="@+id/sensor_signal_back"
         android:layout_width="100dp"
@@ -183,7 +176,6 @@
         app:layout_constraintStart_toStartOf="@+id/sensor_data_back_frame"
         app:layout_constraintTop_toTopOf="@+id/sensor_data_back_frame" />
 
-    <!-- Left -->
     <ImageView
         android:id="@+id/sensor_signal_left"
         android:layout_width="100dp"
@@ -220,7 +212,6 @@
         app:layout_constraintStart_toStartOf="@+id/sensor_data_left_frame"
         app:layout_constraintTop_toTopOf="@+id/sensor_data_left_frame" />
 
-    <!-- Pause Button -->
     <ImageButton
         android:id="@+id/ash_pause_button"
         android:layout_width="130dp"
@@ -233,7 +224,6 @@
         android:background="@android:color/transparent"
         android:padding="10dp" />
 
-    <!-- FOV Button -->
     <ImageButton
         android:id="@+id/ash_fov_button"
         android:layout_width="130dp"
@@ -246,7 +236,6 @@
         android:background="@android:color/transparent"
         android:padding="10dp" />
 
-    <!-- Home Button -->
     <ImageButton
         android:id="@+id/ash_home_button"
         android:layout_width="130dp"
@@ -259,7 +248,6 @@
         app:layout_constraintStart_toStartOf="parent"
         android:padding="10dp" />
 
-    <!-- Wi-Fi Check -->
     <ImageView
         android:id="@+id/ash_wificheck"
         android:layout_width="130dp"
@@ -274,7 +262,6 @@
         app:layout_constraintStart_toEndOf="@id/ash_ball_counter"
         app:layout_constraintTop_toTopOf="@+id/ash_ball_counter" />
 
-    <!-- Bluetooth Check -->
     <ImageView
         android:id="@+id/ash_bluetoothcheck"
         android:layout_width="130dp"
