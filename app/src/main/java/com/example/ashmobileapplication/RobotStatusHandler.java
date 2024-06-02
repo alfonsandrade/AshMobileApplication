@@ -1,20 +1,25 @@
 package com.example.ashmobileapplication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
 public class RobotStatusHandler {
     private static final String TAG = "RobotStatusHandler";
     private final BaseActivity activity;
+    private final Context context;
 
     public RobotStatusHandler(BaseActivity activity) {
         this.activity = activity;
+        this.context = activity.getApplicationContext();
     }
 
     public void handleStatusUpdate(String jsonStatus) {
@@ -28,6 +33,8 @@ public class RobotStatusHandler {
             double sensDistRight = robotStatus.getSensDistRight();
             double sensDistBack = robotStatus.getSensDistBack();
             double sensDistLeft = robotStatus.getSensDistLeft();
+            String robotStatusText = robotStatus.getRobotStatus();
+            String robotError = robotStatus.getRobotError();
 
             activity.runOnUiThread(() -> {
                 if (activity.batteryIcon != null) {
@@ -63,10 +70,28 @@ public class RobotStatusHandler {
                     activity.sensDistLeftView.setText(String.valueOf(sensDistLeft));
                     activity.updateSensorData("left", sensDistLeft);
                 }
+
+                activity.updateRobotStatus(robotStatusText);
+                if (robotError != null && !robotError.isEmpty()) {
+                    handleRobotError(robotError);
+                }
             });
 
         } catch (JSONException e) {
             Log.e(TAG, "Failed to parse robot status JSON", e);
+        }
+    }
+
+    private void handleRobotError(String robotError) {
+        if (activity.bluetoothManager != null) {
+            activity.bluetoothManager.disconnect();
+        }
+        Intent intent = new Intent(context, ErrorActivity.class);
+        intent.putExtra("robot_error", robotError);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+        if (activity != null) {
+            activity.finish();
         }
     }
 

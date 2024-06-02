@@ -2,12 +2,12 @@ package com.example.ashmobileapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,7 +23,7 @@ public class CatchingLiveProcessActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.catching_live_process);
 
-        commandScheduler = new CommandScheduler(MyBluetoothManager.getInstance());
+        commandScheduler = new CommandScheduler(MyBluetoothManager.getInstance(), this);
         batteryIcon = findViewById(R.id.battery_icon);
 
         ballsCollectedView = findViewById(R.id.ash_ball_counter_data);
@@ -52,6 +52,9 @@ public class CatchingLiveProcessActivity extends BaseActivity {
         ultrasonicSensorHandler = new UltrasonicSensorHandler(sensorSignalLeft, sensorSignalFront, sensorSignalRight, sensorSignalBack,
                 sensorDataLeft, sensorDataFront, sensorDataRight, sensorDataBack,
                 sensorFrameLeft, sensorFrameFront, sensorFrameRight, sensorFrameBack);
+
+        setSensDistViews(sensorDataFront, sensorDataRight, sensorDataBack, sensorDataLeft);
+        setUltrasonicSensorHandler(ultrasonicSensorHandler);
 
         ImageButton fovButton = findViewById(R.id.ash_fov_button);
         fovButton.setOnClickListener(v -> startActivity(new Intent(CatchingLiveProcessActivity.this, FovActivity.class)));
@@ -127,7 +130,8 @@ public class CatchingLiveProcessActivity extends BaseActivity {
         snackbar.show();
     }
 
-    public void updateSensorData(String direction, double distance) {
-        ultrasonicSensorHandler.updateSensorData(direction, distance);
+    @Override
+    public void updateRobotStatus(String status) {
+        this.robotStatus = status;
     }
 }

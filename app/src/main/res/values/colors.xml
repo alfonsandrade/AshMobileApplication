@@ -10,4 +10,5 @@
     <color name="gray_bg">#B6B7C4</color>
     <color name="blueashbasecolor">#0082fc</color>
     <color name="transparent">#00000000</color>
+    <color name="red">#FF0000</color>
 </resources>

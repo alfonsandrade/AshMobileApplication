@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    tools:context=".FovActivity">
+
+    <ImageView
+        android:id="@+id/asherroricon"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:src="@drawable/error_icon"
+        app:layout_constraintBottom_toTopOf="@id/asherrortextframe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/asherrortextframe"
+        android:layout_width="350dp"
+        android:layout_height="175dp"
+        android:src="@drawable/error_text_box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/asherroricon" />
+
+    <TextView
+        android:id="@+id/asherrortext"
+        android:layout_width="350dp"
+        android:layout_height="140dp"
+        app:layout_constraintBottom_toBottomOf="@id/asherrortextframe"
+        app:layout_constraintTop_toTopOf="@id/asherrortextframe"
+        app:layout_constraintStart_toStartOf="@id/asherrortextframe"
+        app:layout_constraintEnd_toEndOf="@id/asherrortextframe"
+        android:fontFamily="@font/press_start_2p"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:lineSpacingExtra="5dp"
+        android:padding="5dp"
+        android:textColor="@color/black"/>
+
+    <ImageButton
+        android:id="@+id/reconnect_button"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/reconnect_button"
+        android:scaleType="fitCenter"
+        android:background="@color/transparent"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/asherroricon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

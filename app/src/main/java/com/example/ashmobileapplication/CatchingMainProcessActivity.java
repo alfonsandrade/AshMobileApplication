@@ -22,7 +22,7 @@ public class CatchingMainProcessActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.catching_main_process);
 
-        commandScheduler = new CommandScheduler(MyBluetoothManager.getInstance());
+        commandScheduler = new CommandScheduler(MyBluetoothManager.getInstance(), this);
         batteryIcon = findViewById(R.id.battery_icon);
 
         ballsCollectedView = findViewById(R.id.ash_ball_counter_data);
@@ -119,5 +119,10 @@ public class CatchingMainProcessActivity extends BaseActivity {
         snackbarLayout.removeAllViews();
         snackbarLayout.addView(customView);
         snackbar.show();
+    }
+
+    @Override
+    public void updateRobotStatus(String status) {
+        this.robotStatus = status;
     }
 }

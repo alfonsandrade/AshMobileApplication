@@ -19,6 +19,7 @@ public class BaseActivity extends AppCompatActivity {
     protected TextView sensDistBackView;
     protected TextView sensDistLeftView;
     protected UltrasonicSensorHandler ultrasonicSensorHandler;
+    protected String robotStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,5 +79,9 @@ public class BaseActivity extends AppCompatActivity {
         if (ultrasonicSensorHandler != null) {
             ultrasonicSensorHandler.updateSensorData(direction, distance);
         }
+    }
+
+    public void updateRobotStatus(String status) {
+        this.robotStatus = status;
     }
 }

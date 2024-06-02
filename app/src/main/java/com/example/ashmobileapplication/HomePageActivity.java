@@ -19,7 +19,7 @@ public class HomePageActivity extends BaseActivity {
         robotStatusHandler = new RobotStatusHandler(this);
 
         ImageButton catchButton = findViewById(R.id.catch_button);
-        CommandScheduler commandScheduler = new CommandScheduler(bluetoothManager);
+        CommandScheduler commandScheduler = new CommandScheduler(bluetoothManager, this);
         catchButton.setOnClickListener(v -> {
             SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
             boolean webServerConnected = preferences.getBoolean("web_server_connected", false);
