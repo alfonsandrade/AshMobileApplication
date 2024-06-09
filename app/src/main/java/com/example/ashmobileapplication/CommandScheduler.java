@@ -1,7 +1,6 @@
 package com.example.ashmobileapplication;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import org.json.JSONObject;
 
@@ -53,11 +52,6 @@ public class CommandScheduler {
             @Override
             public void onFailure(int errorCode, String errorMessage) {
                 Log.e(TAG, "Failed to send command: " + errorMessage);
-                if (errorCode == ErrorCode.SERVICE_UNAVAILABLE) {
-                    Intent intent = new Intent(context, ErrorActivity.class);
-                    intent.putExtra("robot_error", "connection_lost");
-                    context.startActivity(intent);
-                }
             }
         });
     }

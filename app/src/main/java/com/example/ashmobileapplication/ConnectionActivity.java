@@ -16,9 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import org.json.JSONObject;
+
 public class ConnectionActivity extends AppCompatActivity {
     private static final int REQUEST_BLUETOOTH_PERMISSIONS = 101;
     private MyBluetoothManager bluetoothManager;
+    private HttpCommunicator httpCommunicator;
+    private boolean isBluetoothConnected = false;
+    private boolean isWebServerConnected = false;
 
     private final ActivityResultLauncher<Intent> enableBluetoothLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -36,14 +41,10 @@ public class ConnectionActivity extends AppCompatActivity {
         setContentView(R.layout.connection_process);
 
         bluetoothManager = MyBluetoothManager.getInstance();
+        httpCommunicator = new HttpCommunicator();
 
         ImageButton bluetoothButton = findViewById(R.id.ash_bluetooth_icon);
-        bluetoothButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                connectBluetooth();
-            }
-        });
+        bluetoothButton.setOnClickListener(v -> connectBluetooth());
     }
 
     private void connectBluetooth() {
@@ -99,20 +100,57 @@ public class ConnectionActivity extends AppCompatActivity {
             public void onConnectionSuccess() {
                 runOnUiThread(() -> {
                     showToast("Bluetooth connected successfully");
-                    goToHomeScreen();
+                    isBluetoothConnected = true;
+                    checkWebServerConnection();
                 });
             }
 
             @Override
             public void onConnectionFailed() {
-                runOnUiThread(() -> showToast("Failed to connect to the device"));
+                runOnUiThread(() -> {
+                    showToast("Failed to connect to the device");
+                    isBluetoothConnected = false;
+                    proceedBasedOnConnection();
+                });
             }
         });
     }
 
-    private void goToHomeScreen() {
-        Intent intent = new Intent(ConnectionActivity.this, HomePageActivity.class);
-        startActivity(intent);
+    private void checkWebServerConnection() {
+        String url = "http://192.168.68.200/connection";
+        String payload = "{}";
+
+        httpCommunicator.sendMessage(url, payload, new ResponseHandler.ResponseCallback() {
+            @Override
+            public void onSuccess(JSONObject response) {
+                runOnUiThread(() -> {
+                    showToast("Web server connected successfully");
+                    isWebServerConnected = true;
+                    proceedBasedOnConnection();
+                });
+            }
+
+            @Override
+            public void onFailure(int errorCode, String errorMessage) {
+                runOnUiThread(() -> {
+                    showToast("Failed to connect to the web server: " + errorMessage);
+                    isWebServerConnected = false;
+                    proceedBasedOnConnection();
+                });
+            }
+        });
+    }
+
+    private void proceedBasedOnConnection() {
+        if (isBluetoothConnected && isWebServerConnected) {
+            Intent intent = new Intent(ConnectionActivity.this, CatchingLiveProcessActivity.class);
+            startActivity(intent);
+        } else if (isBluetoothConnected) {
+            Intent intent = new Intent(ConnectionActivity.this, CatchingMainProcessActivity.class);
+            startActivity(intent);
+        } else {
+            showToast("Connection failed. Please check your Bluetooth and web server.");
+        }
         finish();
     }
 
