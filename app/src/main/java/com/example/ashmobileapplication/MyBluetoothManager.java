@@ -24,7 +24,7 @@ public class MyBluetoothManager {
     private OutputStream outputStream;
     private InputStream inputStream;
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    private static final String ESP32_MAC_ADDRESS = "C8:F0:9E:9A:42:EE";
+    private static final String ESP32_MAC_ADDRESS = "D8:3A:DD:BF:EE:D3";
     private static final String TAG = "MyBluetoothManager";
     private BufferedReader reader;
     private StringBuilder jsonBuffer = new StringBuilder();
