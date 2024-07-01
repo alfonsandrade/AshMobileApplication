@@ -1,5 +1,9 @@
 # ASH Table Tennis Ball Fetcher Mobile Application
 
+## Project Video
+
+[![Watch the video](https://img.youtube.com/vi/UjQqueii4Tw/hqdefault.jpg)](https://www.youtube.com/watch?v=UjQqueii4Tw&t=25s)
+
 ## Overview
 
 The ASH Table Tennis Ball Fetcher project involves developing a RaspberryPi 5 controlled robot to autonomously collect table tennis balls in a training ITTF environment and a mobile application to control the robot and monitor its status. 
@@ -125,3 +129,5 @@ The mobile application is designed to interface with the ASH robot, providing an
 For any inquiries or issues, please contact Alfons Andrade at alfons@alunos.utfpr.edu.br .
 
 ---
+
+This README provides an overview of the ASH Table Tennis Ball Fetcher project, including features, requirements, installation, and usage instructions.
