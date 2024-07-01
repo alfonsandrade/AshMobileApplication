@@ -2,7 +2,7 @@
 
 ## Project Video
 
-[![Watch the video](https://img.youtube.com/vi/UjQqueii4Tw/hqdefault.jpg)](https://www.youtube.com/watch?v=UjQqueii4Tw&t=25s)
+[![Watch the video](https://img.youtube.com/vi/UjQqueii4Tw/hqdefault.jpg)](https://youtu.be/UjQqueii4Tw?si=9p25GaGles6PRyhj)
 
 ## Overview
 
