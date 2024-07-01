@@ -4,6 +4,8 @@
 
 The ASH Table Tennis Ball Fetcher project involves developing a RaspberryPi 5 controlled robot to autonomously collect table tennis balls in a training ITTF environment and a mobile application to control the robot and monitor its status. 
 
+![Animation for app execution](https://imgur.com/a/todJIn3)
+
 ## Features
 
 - **Autonomous Navigation**: The robot can navigate and avoid obstacles within a predefined area.
@@ -117,10 +119,6 @@ The mobile application is designed to interface with the ASH robot, providing an
     - View real-time updates of the robot’s status, battery levels, and sensor readings.
 4. **Field Of View (FOV) Map**:
     - Check the FOV screen to see the positions of detected balls.
-
-## License
-
-AshMobileApplication © 2024 by Alfons Andrade, Guilherme Gomes, Gustavo Gulmine, João Vitor Caversan, Matheus Diniz is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 ## Contact
 
