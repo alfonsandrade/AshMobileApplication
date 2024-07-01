@@ -4,13 +4,14 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.MediaType;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.Response;
+import okhttp3.MediaType;
+
 import java.io.IOException;
 
 public class HttpCommunicator implements NetworkCommunicator {
@@ -19,9 +20,10 @@ public class HttpCommunicator implements NetworkCommunicator {
     public HttpCommunicator() {
         this.client = new OkHttpClient();
     }
+
     @Override
     public void sendMessage(String url, String payload, ResponseHandler.ResponseCallback callback) {
-        RequestBody body = RequestBody.create(payload, okhttp3.MediaType.parse("application/json; charset=utf-8"));
+        RequestBody body = RequestBody.create(payload, MediaType.parse("application/json; charset=utf-8"));
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
@@ -44,5 +46,4 @@ public class HttpCommunicator implements NetworkCommunicator {
             }
         });
     }
-
 }

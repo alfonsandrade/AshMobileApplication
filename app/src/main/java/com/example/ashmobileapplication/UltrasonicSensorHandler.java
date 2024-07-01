@@ -62,7 +62,8 @@ public class UltrasonicSensorHandler {
         }
 
         Log.d(TAG, "Updating sensor data for direction: " + direction + " with distance: " + distance);
-        if (distance > 0 && distance < 15) {
+
+        if ((distance > 0) && (distance < 15)) {
             sensorData.setText(String.valueOf(distance));
             fadeInView(sensorSignal);
             fadeInView(sensorData);
