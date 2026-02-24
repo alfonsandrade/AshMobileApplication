@@ -126,7 +126,7 @@ The mobile application is designed to interface with the ASH robot, providing an
 
 ## Contact
 
-For any inquiries or issues, please contact Alfons Andrade at alfons@alunos.utfpr.edu.br .
+For any inquiries or issues, please contact Alfons Andrade at Likedin or any social media attached.
 
 ---
 
