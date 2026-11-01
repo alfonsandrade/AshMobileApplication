@@ -8,7 +8,6 @@
 
 ![ASH](https://imgur.com/a/evIkRiL.gif)
 
-https://imgur.com/a/evIkRiL
 The ASH Table Tennis Ball Fetcher project involves developing a RaspberryPi 5 controlled robot to autonomously collect table tennis balls in a training ITTF environment and a mobile application to control the robot and monitor its status. 
 
 ![Animation for app execution](https://i.imgur.com/SFpi4P7.gif)
